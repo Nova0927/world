@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NOVA</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@900&family=Montserrat:wght@800&display=swap');
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            background-color: black;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            font-family: 'Montserrat', sans-serif;
+            overflow: hidden;
+            position: relative;
+        }
+        .text {
+            color: white;
+            font-size: 20vw;
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 25px;
+            position: relative;
+            z-index: 1;
+            text-shadow: 0 0 40px rgba(255, 255, 255, 1), 0 0 80px rgba(255, 255, 255, 0.8);
+        }
+        .stars {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle, rgba(0,0,0,0.8) 10%, transparent 80%), url('https://source.unsplash.com/1600x900/?stars,galaxy,space') center/cover no-repeat;
+            opacity: 0.9;
+        }
+        .shooting-star {
+            position: absolute;
+            width: 2px;
+            height: 120px;
+            background: linear-gradient(white, transparent);
+            opacity: 0.9;
+            animation: falling 1.2s linear infinite;
+        }
+        @keyframes falling {
+            0% {
+                transform: translateY(-100px) translateX(0);
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(100vh) translateX(-100px);
+                opacity: 0;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="stars"></div>
+    <div class="text">NOVA</div>
+    <script>
+        function createShootingStar() {
+            const star = document.createElement("div");
+            star.classList.add("shooting-star");
+            star.style.left = Math.random() * window.innerWidth + "px";
+            star.style.top = Math.random() * -50 + "px";
+            document.body.appendChild(star);
+            setTimeout(() => {
+                star.remove();
+            }, 1200);
+        }
+        setInterval(createShootingStar, 200);
+    </script>
+</body>
+</html>
